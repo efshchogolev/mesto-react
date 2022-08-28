@@ -3,7 +3,7 @@ import Footer from "./Footer";
 import Header from "./Header";
 import Main from "./Main";
 import PopupWithForm from "./PopupWithForm";
-import PopupWithImage from "./PopupWithImage";
+import ImagePopup from "./ImagePopup";
 
 function App() {
   const handleEditAvatarClick = () => {
@@ -15,7 +15,7 @@ function App() {
   const handleAddPlaceClick = () => {
     setIsAddPlacePopupOpen(true);
   };
-  const handleCloseAllPopups = () => {
+  const closeAllPopups = () => {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
@@ -42,7 +42,7 @@ function App() {
         title="Редактировать профиль"
         name="edit"
         isOpen={isEditProfilePopupOpen}
-        onClose={handleCloseAllPopups}
+        onClose={closeAllPopups}
         children={
           <form className="popup__form" id="form_edit" noValidate>
             <label className="popup__label">
@@ -84,7 +84,7 @@ function App() {
       <PopupWithForm
         title="Новое место"
         name="add"
-        onClose={handleCloseAllPopups}
+        onClose={closeAllPopups}
         isOpen={isAddPlacePopupOpen}
         children={
           <form className="popup__form" id="form_add" noValidate>
@@ -127,7 +127,7 @@ function App() {
         title="Обновить аватар"
         name="avatar"
         isOpen={isEditAvatarPopupOpen}
-        onClose={handleCloseAllPopups}
+        onClose={closeAllPopups}
         children={
           <form className="popup__form" id="form_avatar" noValidate>
             <label className="popup__label">
@@ -167,7 +167,7 @@ function App() {
           </form>
         }
       />
-      <PopupWithImage card={selectedCard} onClose={handleCloseAllPopups} />
+      <ImagePopup card={selectedCard} onClose={closeAllPopups} />
     </div>
   );
 }

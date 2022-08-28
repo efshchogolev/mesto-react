@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import api from "../api";
+import Api from "../api";
 import Card from "./Card";
 
 function Main(props) {
@@ -8,6 +8,10 @@ function Main(props) {
   const [userDescription, setUserDescription] = useState("");
   const [userAvatar, setUserAvatar] = useState("");
   const [cards, setCards] = useState([]);
+  const api = new Api(
+    "https://mesto.nomoreparties.co/v1/cohort-47",
+    "ad5a4fe9-6249-4900-9757-39fd298866ec"
+  );
   useEffect(() => {
     api.getUserInfoFromServer().then((data) => {
       setUserName(`${data.name}`);
