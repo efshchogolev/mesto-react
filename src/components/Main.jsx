@@ -3,7 +3,7 @@ import api from "../api";
 import Card from "./Card";
 
 function Main(props) {
-  const { onEditProfile, onAddPlace, onEditAvatar } = props;
+  const { onEditProfile, onAddPlace, onEditAvatar, onCardClick } = props;
   const [userName, setUserName] = useState("");
   const [userDescription, setUserDescription] = useState("");
   const [userAvatar, setUserAvatar] = useState("");
@@ -17,7 +17,6 @@ function Main(props) {
   }, []);
   useEffect(() => {
     api.getCards().then((data) => {
-      console.log(data);
       setCards(
         data.map((item) => ({
           name: item.name,
@@ -50,7 +49,7 @@ function Main(props) {
       </section>
       <section className="elements">
         {cards.map((card) => (
-          <Card card={card} />
+          <Card card={card} onCardClick={onCardClick} />
         ))}
       </section>
     </>

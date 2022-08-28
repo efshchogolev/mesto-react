@@ -19,14 +19,20 @@ function App() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
+    setSelectedCard(false);
+  };
+  const handleCardClick = (card) => {
+    setSelectedCard(card);
   };
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
+  const [selectedCard, setSelectedCard] = useState(false);
   return (
     <div className="root">
       <Header />
       <Main
+        onCardClick={handleCardClick}
         onEditProfile={handleEditProfileClick}
         onAddPlace={handleAddPlaceClick}
         onEditAvatar={handleEditAvatarClick}
@@ -161,27 +167,7 @@ function App() {
           </form>
         }
       />
-      <PopupWithImage />
-
-      <template className="place-template">
-        <div className="place">
-          <div className="place__image-container">
-            <button className="place__delete-button"></button>
-            <img
-              src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg"
-              className="place__image"
-              alt="Архыз"
-            />
-          </div>
-          <div className="place__info">
-            <h2 className="place__name"></h2>
-            <div className="place__like-container">
-              <button className="place__like-button"></button>
-              <p className="place__like-count"></p>
-            </div>
-          </div>
-        </div>
-      </template>
+      <PopupWithImage card={selectedCard} onClose={handleCloseAllPopups} />
     </div>
   );
 }

@@ -1,14 +1,12 @@
-function PopupWithImage() {
+function PopupWithImage(props) {
+  const { card, onClose } = props;
+  const className = `${card ? "popup_isOpen" : ""}`;
   return (
-    <div className="popup" id="popup_place">
+    <div className={`popup ${className}`} id="popup_place">
       <div className="popup__place-container">
-        <img
-          src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg"
-          className="popup__place-image"
-          alt="Архыз"
-        />
-        <button className="popup__close-button"></button>
-        <h2 className="popup__place-name">Архыз</h2>
+        <img src={card.link} className="popup__place-image" alt={card.name} />
+        <button className="popup__close-button" onClick={onClose}></button>
+        <h2 className="popup__place-name">{card.name}</h2>
       </div>
     </div>
   );
