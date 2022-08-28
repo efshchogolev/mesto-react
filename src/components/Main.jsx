@@ -6,11 +6,25 @@ function Main(props) {
   const [userName, setUserName] = useState("");
   const [userDescription, setUserDescription] = useState("");
   const [userAvatar, setUserAvatar] = useState("");
+  const [cards, setCards] = useState([]);
   useEffect(() => {
     api.getUserInfoFromServer().then((data) => {
       setUserName(`${data.name}`);
       setUserDescription(`${data.about}`);
       setUserAvatar(`${data.avatar}`);
+    });
+  }, []);
+  useEffect(() => {
+    api.getCards().then((data) => {
+      console.log(data);
+      setCards(
+        data.map((item) => ({
+          name: item.name,
+          likes: item.likes,
+          link: item.link,
+          id: item._id,
+        }))
+      );
     });
   }, []);
   return (
@@ -33,7 +47,23 @@ function Main(props) {
         </div>
         <button className="profile__add-button" onClick={onAddPlace}></button>
       </section>
-      <section className="elements"></section>
+      <section className="elements">
+        {cards.map(({ name, likes, link, id }) => (
+          <div className="place" key={id}>
+            <div className="place__image-container">
+              <button className="place__delete-button"></button>
+              <img src={link} className="place__image" alt={name} />
+            </div>
+            <div className="place__info">
+              <h2 className="place__name">{name}</h2>
+              <div className="place__like-container">
+                <button className="place__like-button"></button>
+                <p className="place__like-count">{likes.length}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </section>
     </>
   );
 }

@@ -162,26 +162,6 @@ function App() {
         }
       />
       <PopupWithImage />
-
-      <template className="place-template">
-        <div className="place">
-          <div className="place__image-container">
-            <button className="place__delete-button"></button>
-            <img
-              src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg"
-              className="place__image"
-              alt="Архыз"
-            />
-          </div>
-          <div className="place__info">
-            <h2 className="place__name"></h2>
-            <div className="place__like-container">
-              <button className="place__like-button"></button>
-              <p className="place__like-count"></p>
-            </div>
-          </div>
-        </div>
-      </template>
     </div>
   );
 }
