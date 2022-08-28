@@ -1,34 +1,20 @@
-function Main() {
-  const handleEditAvatarClick = () => {
-    document.querySelector("#popup_avatar").classList.add("popup_isOpen");
-  };
-  const handleEditProfileClick = () => {
-    document.querySelector("#popup_edit").classList.add("popup_isOpen");
-  };
-  const handleAddPlaceClick = () => {
-    document.querySelector("#popup_add").classList.add("popup_isOpen");
-  };
+function Main(props) {
+  const { onEditProfile, onAddPlace, onEditAvatar } = props;
   return (
     <>
       <section className="profile">
-        <div
-          className="profile__avatar-container"
-          onClick={handleEditAvatarClick}
-        >
+        <div className="profile__avatar-container" onClick={onEditAvatar}>
           <img src="" className="profile__avatar" alt="Аватарка" />
         </div>
         <div className="profile__info">
           <h1 className="profile__name">Жак-Ив Кусто</h1>
           <button
             className="profile__edit-button"
-            onClick={handleEditProfileClick}
+            onClick={onEditProfile}
           ></button>
           <h2 className="profile__about">Исследователь океана</h2>
         </div>
-        <button
-          className="profile__add-button"
-          onClick={handleAddPlaceClick}
-        ></button>
+        <button className="profile__add-button" onClick={onAddPlace}></button>
       </section>
       <section className="elements"></section>
     </>
