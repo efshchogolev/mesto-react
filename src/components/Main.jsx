@@ -57,9 +57,3 @@ function Main(props) {
 }
 
 export default Main;
-
-// about: "Хороший мальчик"
-// avatar: "https://cdn.fishki.net/upload/post/201512/11/1771317/tn/cb43e36ba9eea7b2dcd3410d99262de8.jpg"
-// cohort: "cohort-47"
-// name: "ЖакЖак"
-// _id: "b8ccfc62ba05e7b825498188"
