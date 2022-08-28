@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../api";
+import Card from "./Card";
 
 function Main(props) {
   const { onEditProfile, onAddPlace, onEditAvatar } = props;
@@ -48,20 +49,8 @@ function Main(props) {
         <button className="profile__add-button" onClick={onAddPlace}></button>
       </section>
       <section className="elements">
-        {cards.map(({ name, likes, link, id }) => (
-          <div className="place" key={id}>
-            <div className="place__image-container">
-              <button className="place__delete-button"></button>
-              <img src={link} className="place__image" alt={name} />
-            </div>
-            <div className="place__info">
-              <h2 className="place__name">{name}</h2>
-              <div className="place__like-container">
-                <button className="place__like-button"></button>
-                <p className="place__like-count">{likes.length}</p>
-              </div>
-            </div>
-          </div>
+        {cards.map((card) => (
+          <Card card={card} />
         ))}
       </section>
     </>
