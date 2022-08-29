@@ -34,7 +34,7 @@ function Main(props) {
     });
   }, []);
   return (
-    <>
+    <main>
       <section className="profile">
         <div className="profile__avatar-container" onClick={onEditAvatar}>
           <img
@@ -58,7 +58,7 @@ function Main(props) {
           <Card card={card} onCardClick={onCardClick} />
         ))}
       </section>
-    </>
+    </main>
   );
 }
 
