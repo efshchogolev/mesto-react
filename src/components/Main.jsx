@@ -20,18 +20,19 @@ function Main(props) {
       .catch((err) => console.log(err));
   }, []);
   useEffect(() => {
-    api.getCards().then((data) => {
-      setCards(
-        data
-          .map((item) => ({
+    api
+      .getCards()
+      .then((data) => {
+        setCards(
+          data.map((item) => ({
             name: item.name,
             likes: item.likes,
             link: item.link,
             id: item._id,
           }))
-          .catch((err) => console.log(err))
-      );
-    });
+        );
+      })
+      .catch((err) => console.log(err));
   }, []);
   return (
     <main>
@@ -55,7 +56,7 @@ function Main(props) {
       </section>
       <section className="elements">
         {cards.map((card) => (
-          <Card card={card} onCardClick={onCardClick} />
+          <Card card={card} onCardClick={onCardClick} key={card.id} />
         ))}
       </section>
     </main>
