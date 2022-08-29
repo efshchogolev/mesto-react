@@ -4,7 +4,7 @@ function Card(props) {
     onCardClick(card);
   }
   return (
-    <div className="place" key={card.id}>
+    <div className="place">
       <div className="place__image-container">
         <button className="place__delete-button"></button>
         <img

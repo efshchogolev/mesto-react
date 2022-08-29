@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Api from "../utils/Api";
+import api from "../utils/Api";
 import Card from "./Card";
 
 function Main(props) {
@@ -8,26 +8,28 @@ function Main(props) {
   const [userDescription, setUserDescription] = useState("");
   const [userAvatar, setUserAvatar] = useState("");
   const [cards, setCards] = useState([]);
-  const api = new Api(
-    "https://mesto.nomoreparties.co/v1/cohort-47",
-    "ad5a4fe9-6249-4900-9757-39fd298866ec"
-  );
+
   useEffect(() => {
-    api.getUserInfoFromServer().then((data) => {
-      setUserName(`${data.name}`);
-      setUserDescription(`${data.about}`);
-      setUserAvatar(`${data.avatar}`);
-    });
+    api
+      .getUserInfoFromServer()
+      .then((data) => {
+        setUserName(`${data.name}`);
+        setUserDescription(`${data.about}`);
+        setUserAvatar(`${data.avatar}`);
+      })
+      .catch((err) => console.log(err));
   }, []);
   useEffect(() => {
     api.getCards().then((data) => {
       setCards(
-        data.map((item) => ({
-          name: item.name,
-          likes: item.likes,
-          link: item.link,
-          id: item._id,
-        }))
+        data
+          .map((item) => ({
+            name: item.name,
+            likes: item.likes,
+            link: item.link,
+            id: item._id,
+          }))
+          .catch((err) => console.log(err))
       );
     });
   }, []);
