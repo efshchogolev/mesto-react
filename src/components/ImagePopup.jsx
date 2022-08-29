@@ -1,6 +1,6 @@
 function ImagePopup(props) {
   const { card, onClose } = props;
-  const className = `${card ? "popup_isOpen" : ""}`;
+  const className = `${card.link ? "popup_isOpen" : ""}`;
   return (
     <div className={`popup ${className}`} id="popup_place">
       <div className="popup__place-container">
