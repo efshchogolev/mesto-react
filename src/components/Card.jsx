@@ -2,15 +2,16 @@ import { useContext } from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function Card(props) {
-  const { card, onCardClick } = props;
+  const { card, onCardClick, onCardLike } = props;
+  function handleLikeCard() {
+    onCardLike(card);
+  }
+
   function handleClick() {
     onCardClick(card);
   }
-  console.log(card);
   const currentUser = useContext(CurrentUserContext);
   const isOwn = card.owner._id === currentUser._id;
-  console.log(card.owner._id);
-  console.log(currentUser._id);
 
   const isLiked = card.likes.some((i) => i._id === currentUser._id);
 
@@ -35,7 +36,10 @@ function Card(props) {
       <div className="place__info">
         <h2 className="place__name">{card.name}</h2>
         <div className="place__like-container">
-          <button className={cardLikeButtonClassName}></button>
+          <button
+            className={cardLikeButtonClassName}
+            onClick={handleLikeCard}
+          ></button>
           <p className="place__like-count">{card.likes.length}</p>
         </div>
       </div>

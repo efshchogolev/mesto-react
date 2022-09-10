@@ -32,6 +32,20 @@ class Api {
       headers: this._getHeaders(),
     }).then(this._getJsonOrError);
   }
+
+  changeLikeCardStatus(id, isNotLiked) {
+    if (isNotLiked) {
+      return fetch(`${this._host}/cards/${id}/likes`, {
+        method: "PUT",
+        headers: this._getHeaders(),
+      }).then(this._getJsonOrError);
+    } else {
+      return fetch(`${this._host}/cards/${id}/likes`, {
+        method: "DELETE",
+        headers: this._getHeaders(),
+      }).then(this._getJsonOrError);
+    }
+  }
 }
 
 const api = new Api(
