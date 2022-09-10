@@ -19,6 +19,7 @@ function Main(props) {
             likes: item.likes,
             link: item.link,
             id: item._id,
+            owner: item.owner,
           }))
         );
       })
