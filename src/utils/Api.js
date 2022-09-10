@@ -46,6 +46,13 @@ class Api {
       }).then(this._getJsonOrError);
     }
   }
+
+  deleteCard(id) {
+    return fetch(`${this._host}/cards/${id}`, {
+      method: "DELETE",
+      headers: this._getHeaders(),
+    }).then(this._getJsonOrError);
+  }
 }
 
 const api = new Api(

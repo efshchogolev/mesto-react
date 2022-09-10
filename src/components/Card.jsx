@@ -2,9 +2,12 @@ import { useContext } from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function Card(props) {
-  const { card, onCardClick, onCardLike } = props;
+  const { card, onCardClick, onCardLike, onCardDelete } = props;
   function handleLikeCard() {
     onCardLike(card);
+  }
+  function handleDeleteClick() {
+    onCardDelete(card);
   }
 
   function handleClick() {
@@ -25,7 +28,10 @@ function Card(props) {
   return (
     <div className="place">
       <div className="place__image-container">
-        <button className={cardDeleteButtonClassName}></button>
+        <button
+          className={cardDeleteButtonClassName}
+          onClick={handleDeleteClick}
+        ></button>
         <img
           src={card.link}
           className="place__image"
