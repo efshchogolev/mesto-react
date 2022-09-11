@@ -60,17 +60,57 @@ function App() {
       .catch((err) => console.log(err));
   }, []);
 
+  useEffect(() => {
+    api
+      .getCards()
+      .then((data) => {
+        setCards(
+          data.map((item) => ({
+            name: item.name,
+            likes: item.likes,
+            link: item.link,
+            _id: item._id,
+            owner: item.owner,
+          }))
+        );
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  const [cards, setCards] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState({ name: "", link: "" });
   const [isDeletePopupOpen, setIsDeletePopupOpen] = useState(false);
+
+  function handleCardLike(card) {
+    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+
+    api
+      .changeLikeCardStatus(card._id, !isLiked)
+      .then((newCard) => {
+        setCards((state) =>
+          state.map((c) => (c._id === card._id ? newCard : c))
+        );
+      })
+      .catch((err) => console.log(err));
+  }
+  function handleCardDelete(card) {
+    api
+      .deleteCard(card._id)
+      .then(setCards(cards.filter((item) => item._id !== card._id)))
+      .catch((err) => console.log(err));
+  }
   return (
     <div className="root">
       <CurrentUserContext.Provider value={currentUser}>
         <Header />
         <Main
+          cards={cards}
+          onCardLike={handleCardLike}
+          onCardDelete={handleCardDelete}
           onCardClick={handleCardClick}
           onEditProfile={handleEditProfileClick}
           onAddPlace={handleAddPlaceClick}
