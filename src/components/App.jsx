@@ -35,7 +35,6 @@ function App() {
     api
       .setUserInfo(data)
       .then((data) => {
-        console.log(data);
         setCurrentUser(data);
       })
       .then(closeAllPopups())
@@ -104,6 +103,16 @@ function App() {
       .then(setCards(cards.filter((item) => item._id !== card._id)))
       .catch((err) => console.log(err));
   }
+
+  const handleAddPlaceSubmit = (card) => {
+    api
+      .createCard(card)
+      .then((newCard) => {
+        setCards([newCard, ...cards]);
+      })
+      .then(closeAllPopups())
+      .catch((err) => console.log(err));
+  };
   return (
     <div className="root">
       <CurrentUserContext.Provider value={currentUser}>
@@ -123,7 +132,11 @@ function App() {
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
         />
-        <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} />
+        <AddPlacePopup
+          isOpen={isAddPlacePopupOpen}
+          onClose={closeAllPopups}
+          onAddCard={handleAddPlaceSubmit}
+        />
 
         <EditAvatarPopup
           isOpen={isEditAvatarPopupOpen}

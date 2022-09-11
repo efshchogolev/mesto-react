@@ -27,6 +27,17 @@ class Api {
     }).then(this._getJsonOrError);
   }
 
+  createCard(card) {
+    return fetch(`${this._host}/cards`, {
+      method: "POST",
+      headers: this._getHeaders(),
+      body: JSON.stringify({
+        name: card.name,
+        link: card.link,
+      }),
+    }).then(this._getJsonOrError);
+  }
+
   setUserAvatar(link) {
     return fetch(`${this._host}/users/me/avatar`, {
       method: "PATCH",
