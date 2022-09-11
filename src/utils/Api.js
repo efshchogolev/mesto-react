@@ -47,6 +47,17 @@ class Api {
     }
   }
 
+  setUserInfo({ name, about }) {
+    return fetch(`${this._host}/users/me`, {
+      method: "PATCH",
+      headers: this._getHeaders(),
+      body: JSON.stringify({
+        name: name,
+        about: about,
+      }),
+    }).then(this._getJsonOrError);
+  }
+
   deleteCard(id) {
     return fetch(`${this._host}/cards/${id}`, {
       method: "DELETE",

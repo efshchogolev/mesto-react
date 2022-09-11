@@ -4,7 +4,7 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import { useEffect } from "react";
 
 function EditProfilePopup(props) {
-  const { isOpen, onClose } = props;
+  const { isOpen, onClose, onUpdateUser } = props;
   const currentUser = useContext(CurrentUserContext);
   const [name, setName] = useState("");
   function handleChangeName(e) {
@@ -13,6 +13,14 @@ function EditProfilePopup(props) {
   const [description, setDescription] = useState("");
   function handleChangeDescription(e) {
     setDescription(e.target.value);
+  }
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    onUpdateUser({
+      name: name,
+      about: description,
+    });
   }
   useEffect(() => {
     setName(currentUser.name);
@@ -25,6 +33,7 @@ function EditProfilePopup(props) {
       isOpen={isOpen}
       onClose={onClose}
       buttonText="Сохранить"
+      onSubmit={handleSubmit}
     >
       <label className="popup__label">
         <input
@@ -36,7 +45,7 @@ function EditProfilePopup(props) {
           required
           minLength="2"
           maxLength="40"
-          value={name}
+          value={name || ""}
           onChange={handleChangeName}
         />
         <span className="popup__error-message name-error"></span>
@@ -51,7 +60,7 @@ function EditProfilePopup(props) {
           required
           minLength="2"
           maxLength="200"
-          value={description}
+          value={description || ""}
           onChange={handleChangeDescription}
         />
         <span className="popup__error-message about-error"></span>
