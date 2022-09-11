@@ -7,6 +7,7 @@ import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
 import { useEffect } from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import EditProfilePopup from "./EditProfilePopup";
 
 function App() {
   const handleEditAvatarClick = () => {
@@ -55,40 +56,10 @@ function App() {
           onEditAvatar={handleEditAvatarClick}
         />
         <Footer />
-        <PopupWithForm
-          title="Редактировать профиль"
-          name="edit"
+        <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
-          buttonText="Сохранить"
-        >
-          <label className="popup__label">
-            <input
-              type="text"
-              className="popup__input popup__input_name"
-              name="name"
-              placeholder="Ваше имя"
-              id="name"
-              required
-              minLength="2"
-              maxLength="40"
-            />
-            <span className="popup__error-message name-error"></span>
-          </label>
-          <label className="popup__label">
-            <input
-              type="text"
-              name="about"
-              className="popup__input popup__input_about "
-              placeholder="Расскажите о себе"
-              id="about"
-              required
-              minLength="2"
-              maxLength="200"
-            />
-            <span className="popup__error-message about-error"></span>
-          </label>
-        </PopupWithForm>
+        />
         <PopupWithForm
           title="Новое место"
           name="add"
