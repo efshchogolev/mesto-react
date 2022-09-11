@@ -1,10 +1,13 @@
-import { useContext, useState } from "react";
 import PopupWithForm from "./PopupWithForm";
-import { CurrentUserContext } from "../contexts/CurrentUserContext";
-import { useEffect } from "react";
+import { useRef } from "react";
 
 function EditAvatarPopup(props) {
-  const { isOpen, onClose } = props;
+  const { isOpen, onClose, onUpdateAvatar } = props;
+  const avatarRef = useRef();
+  function handleSubmit(e) {
+    e.preventDefault();
+    onUpdateAvatar(avatarRef.current.value);
+  }
   return (
     <PopupWithForm
       title="Обновить аватар"
@@ -12,9 +15,11 @@ function EditAvatarPopup(props) {
       isOpen={isOpen}
       onClose={onClose}
       buttonText="Сохранить"
+      onSubmit={handleSubmit}
     >
       <label className="popup__label">
         <input
+          ref={avatarRef}
           type="url"
           className="popup__input popup__input_avatar"
           placeholder="Ссылка на картинку"

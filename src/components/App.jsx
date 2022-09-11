@@ -41,6 +41,16 @@ function App() {
       .catch((err) => console.log(err));
   };
 
+  const handleUpdateAvatar = (link) => {
+    api
+      .setUserAvatar(link)
+      .then((data) => {
+        setCurrentUser(data);
+      })
+      .then(closeAllPopups())
+      .catch((err) => console.log(err));
+  };
+
   useEffect(() => {
     api
       .getUserInfoFromServer()
@@ -108,6 +118,7 @@ function App() {
         <EditAvatarPopup
           isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
+          onUpdateAvatar={handleUpdateAvatar}
         />
 
         <PopupWithForm
