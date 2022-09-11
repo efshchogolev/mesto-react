@@ -8,6 +8,7 @@ import ImagePopup from "./ImagePopup";
 import { useEffect } from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import EditProfilePopup from "./EditProfilePopup";
+import EditAvatarPopup from "./EditAvatarPopup";
 
 function App() {
   const handleEditAvatarClick = () => {
@@ -104,25 +105,10 @@ function App() {
           </label>
         </PopupWithForm>
 
-        <PopupWithForm
-          title="Обновить аватар"
-          name="avatar"
+        <EditAvatarPopup
           isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
-          buttonText="Сохранить"
-        >
-          <label className="popup__label">
-            <input
-              type="url"
-              className="popup__input popup__input_avatar"
-              placeholder="Ссылка на картинку"
-              name="link"
-              id="avatar-url"
-              required
-            />
-            <span className="popup__error-message avatar-url-error"></span>
-          </label>
-        </PopupWithForm>
+        />
 
         <PopupWithForm
           title="Вы уверены?"
