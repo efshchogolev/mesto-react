@@ -2,6 +2,9 @@ import { useState } from "react";
 import PopupWithForm from "./PopupWithForm";
 
 function AddPlacePopup({ onClose, isOpen, onAddCard }) {
+  const [placeName, setPlaceName] = useState("");
+  const [link, setLink] = useState("");
+
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -10,8 +13,7 @@ function AddPlacePopup({ onClose, isOpen, onAddCard }) {
       link: link,
     });
   }
-  const [placeName, setPlaceName] = useState("");
-  const [link, setLink] = useState("");
+
   function handleNameChange(e) {
     setPlaceName(e.target.value);
   }

@@ -6,13 +6,15 @@ import { useEffect } from "react";
 function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
   const currentUser = useContext(CurrentUserContext);
   const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+
   function handleChangeName(e) {
     setName(e.target.value);
   }
-  const [description, setDescription] = useState("");
   function handleChangeDescription(e) {
     setDescription(e.target.value);
   }
+
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -21,10 +23,12 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
       about: description,
     });
   }
+
   useEffect(() => {
     setName(currentUser.name);
     setDescription(currentUser.about);
   }, [currentUser]);
+
   return (
     <PopupWithForm
       title="Редактировать профиль"
