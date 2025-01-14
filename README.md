@@ -1,28 +1,26 @@
-# Проект: Место (React)
+# Project: Mesto (React)
+
+### Overview
+
+_The project is designed to allow users to showcase various places they have captured on camera._
 
 ---
 
-### Обзор
-
-_Проект создан для того, чтобы каждый мог показать самые различные места, которые он смог запечатлеть на камеру_
+During the development of this project, knowledge of JavaScript and React was reinforced.
 
 ---
 
-В ходе создания проекта закреплялись знания о JavaScript и React
+- Responsive design is implemented.
+- Flexbox layout is used.
+- Grid layout is used.
+- Users can update their name and personal information through a popup.
+- Hover animations are applied.
+- The file structure follows the BEM methodology (Nested).
+- Users can add/delete cards.
+- Users can update their name and personal information through a popup.
+- Information is saved on the server.
+- Users can like/dislike cards.
 
 ---
 
-- Используется адаптивная верстка
-- Используется флекcбокс верска
-- Используется грид верстка
-- Есть возможность изменить имя и информацию о себе с помощью попапа
-- Используется анмация при наведеии
-- Используется файловая структура по БЭМ (Nested)
-- Можно добавлять/удалять карточки
-- Есть возможность изменить имя и информацию о себе с помощью попапа
-- Информация сохраняется на сервере
-- Есть возможность ставить/убирать лайк карточке
-
----
-
-Ссылка на GitHub Pages: https://efimgoldfinch.github.io/mesto-react/
+[GitHub Pages link](https://efimgoldfinch.github.io/mesto-react/)
